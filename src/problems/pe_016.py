@@ -7,7 +7,7 @@
 from typing import List
 
 
-def multiply(digit_list: List[int], multiplier: int, base: int = 10) -> List[int]:
+def multiply_digits(digit_list: List[int], multiplier: int, base: int = 10) -> List[int]:
     '''multiplies a list of digits by a small number, each digit in the list shoudl represent the value digit_list[index] * base ** index'''
     product, magnitude, remainder = [], 0, 0
     while remainder > 0 or magnitude < len(digit_list):
@@ -24,7 +24,7 @@ def solve() -> int:
     base, exponent = 2, 1000
     product = [1]
     for x in range(exponent):
-        product = multiply(product, base)
+        product = multiply_digits(product, base)
     return sum(product)
 
 
