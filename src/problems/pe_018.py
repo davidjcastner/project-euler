@@ -29,14 +29,6 @@
 
 # NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one - hundred rows; it cannot be solved by brute force, and requires a clever method!; o)
 
-from typing import Generator, Tuple
-
-# def triangle_numbers() -> Generator[Tuple[int, int], None, None]
-#     '''generate triangle'''
-
-
-# def get_parent_index(child_index: int)-> int:
-
 
 def solve() -> int:
     '''Problem 18 - Maximum path sum I'''
