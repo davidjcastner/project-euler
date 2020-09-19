@@ -19,7 +19,7 @@ def n_choose_k(n: int, k: int) -> int:
 
 
 def solve() -> int:
-    '''Problem 14 - Longest Collatz sequence'''
+    '''Problem 15 - Lattice paths'''
     grid_size = 20
     return n_choose_k(2 * grid_size, grid_size)
 
