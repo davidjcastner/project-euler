@@ -27,14 +27,15 @@
 
 from functools import reduce
 import re
-from typing import List
+from typing import Callable, List
 
 
 def find_largest_digit_product(series: List[int], factors: int) -> int:
     '''finds the largest product in the series with the correct amount of factors'''
     max_product = 0
+    multiply: Callable[[int, int], int] = lambda x, y: x * y
     for index in range(len(series) - factors + 1):
-        product = reduce(lambda x, y: x * y, series[index: index + factors])
+        product = reduce(multiply, series[index: index + factors])
         if product > max_product:
             max_product = product
     return max_product

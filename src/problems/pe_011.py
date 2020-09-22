@@ -111,9 +111,10 @@ def solve() -> int:
 
     max_product = 0
     trys = 0
+    multiply: Callable[[int, int], int] = lambda x, y: x * y
     for iteration in iterations:
         for factors in iterate_series(grid, factors_in_product, iteration[0], iteration[1]):
-            max_product = max(max_product, reduce(lambda x, y: x * y, factors))
+            max_product = max(max_product, reduce(multiply, factors))
 
     return max_product
 
