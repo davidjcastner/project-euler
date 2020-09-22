@@ -63,7 +63,7 @@ def unfactorize(factorization: Dict[int, int]) -> int:
     '''multiples all factors and returns the product'''
     product = 1
     for factor, count in factorization.items():
-        product *= factor ** count
+        product *= factor ** count  # type: ignore
     return product
 
 
