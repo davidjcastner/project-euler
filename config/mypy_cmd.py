@@ -6,7 +6,7 @@ from typing import List
 
 def find_all_files(current_path: str, ignore_spec: pathspec.PathSpec, match_spec: pathspec.PathSpec) -> List[str]:
     '''recursively searches for all files, returns a list with complete paths for the current os'''
-    if ignore_spec.match_file(current_path):
+    if ignore_spec.match_file(current_path) or os.path.realpath(__file__) == os.path.realpath(current_path):
         return []
     elif os.path.isfile(current_path) and match_spec.match_file(current_path):
         return [os.path.realpath(current_path)]
