@@ -8,24 +8,13 @@
 
 # Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 
-
-def int_range_sum(start: int, end: int, divisor: int) -> int:
-    '''returns the sum of all integers in the range [start, end] divisible by divisor'''
-    calc_start = start // divisor
-    calc_end = end // divisor
-    return ((calc_start + calc_end) * (calc_end - calc_start + 1) // 2) * divisor
+from valkyrie_util.calculate import range_sum_int, sum_of_squares
 
 
-def sum_of_squares(n: int) -> int:
-    '''returns the sum of squares'''
-    return n * (n + 1) * (2 * n + 1) // 6
-
-
-def solve() -> int:
+def solve(n: int = 100) -> str:
     '''Problem 6 - Sum square difference'''
-    n = 100
-    return int_range_sum(1, n, 1) ** 2 - sum_of_squares(n)
+    return str(range_sum_int(1, n) ** 2 - sum_of_squares(n))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(solve())
