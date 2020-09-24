@@ -4,7 +4,7 @@
 
 # What is the largest prime factor of the number 600851475143 ?
 
-from valkyrie_util.primes import prime_factorization
+from valkyrie_util.factors import prime_factorization
 
 
 def solve(n: int = 600851475143) -> str:

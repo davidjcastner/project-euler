@@ -5,8 +5,7 @@
 # What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
 from typing import List
-from valkyrie_util.factors import factorization_product, lcm_factorization
-from valkyrie_util.primes import prime_factorization
+from valkyrie_util.factors import factorization_product, lcm_factorization, prime_factorization
 
 
 def solve(divisors: List[int] = list(range(1, 21))) -> str:
