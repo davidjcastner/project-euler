@@ -8,25 +8,21 @@
 # There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 # Find the product abc.
 
-from functools import reduce
-import re
-from typing import List
 
-
-def solve() -> int:
+def solve(triplet_sum: int = 1000) -> int:
     '''Problem 9 - Special Pythagorean triplet'''
     squares = set()
-    for x in range(1, 1000):
+    for x in range(1, triplet_sum):
         squares.add(x ** 2)
-    for c in range(333, 1000):
+    for c in range(triplet_sum // 3, triplet_sum):
         for b in range(c - 1, (c - 1) // 2, -1):
             a_squared = c ** 2 - b ** 2
             a = int(a_squared ** 0.5)
-            if a_squared in squares and a + b + c == 1000:
+            if a_squared in squares and a + b + c == triplet_sum:
                 # print(f'{a}^2 + {b}^2 = {c}^2, {a **2} + {b**2} = {c**2}')
-                return a * b * c
-    return 0
+                return str(a * b * c)
+    return '0'
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(solve())
