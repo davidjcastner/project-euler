@@ -33,7 +33,7 @@ from typing import Callable, Generator, List, Tuple
 from project_euler.data.util import read_data
 
 
-def iterate_series(series: List[int], return_length: int, is_valid_start: Callable[[int], bool], next_index: Callable[[int], int]) -> Generator[List[int], None, None]:
+def iterate_series(series: List[int], return_length: int, is_valid_start: Callable[[int], bool], next_index: Callable[[int], int]) -> Generator[List[int], None, None]:  # noqa E501
     '''iterates through the series using all valid starting indexes, and returns the desired items'''
     for series_index in range(len(series)):
         if is_valid_start(series_index):
@@ -49,7 +49,7 @@ def solve(series_length: int = 4, data_file: str = 'd_011.txt') -> str:
     '''Problem 11 - Largest product in a grid'''
     data = read_data(data_file)
     grid = [int(num) for num in data.split()]
-    grid_width, grid_height, factors_in_product = 20, 20, 4
+    grid_width, grid_height, factors_in_product = 20, 20, series_length
 
     def is_valid_start_horizontal(index: int) -> bool:
         '''checks if the index is a valid starting point'''
@@ -96,7 +96,7 @@ def solve(series_length: int = 4, data_file: str = 'd_011.txt') -> str:
         for factors in iterate_series(grid, factors_in_product, iteration[0], iteration[1]):
             max_product = max(max_product, reduce(multiply, factors))
 
-    return max_product
+    return str(max_product)
 
 
 if __name__ == '__main__':
