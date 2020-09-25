@@ -7,34 +7,15 @@
 
 # Find the sum of the digits in the number 100!
 
-from typing import List
+from valkyrie_util.large import large_number_multiply
 
 
-def multiply_digits(digit_list: List[int], multiplier: int, base: int = 10) -> List[int]:
-    '''multiplies a list of digits by a small number,
-    each digit in the list should represent the value digit_list[index] * base ** index'''
-    product, magnitude, remainder = [], 0, 0
-    while remainder > 0 or magnitude < len(digit_list):
-        if magnitude < len(digit_list):
-            remainder += digit_list[magnitude] * multiplier
-        product.append(remainder % base)
-        remainder = remainder // base
-        magnitude += 1
-    return product
-
-
-def factorial_digits(n: int) -> List[int]:
-    '''returns n! as a list of digits'''
-    if n == 0 or n == 1:
-        return [1]
-    else:
-        return multiply_digits(factorial_digits(n - 1), n)
-
-
-def solve() -> int:
+def solve(n: int = 100) -> int:
     '''Problem 20 - Factorial digit sum'''
-    n = 100
-    return sum(factorial_digits(n))
+    product = [1]
+    for multiplier in range(2, n):
+        product = large_number_multiply(product, multiplier)
+    return str(sum(product))
 
 
 if __name__ == '__main__':
