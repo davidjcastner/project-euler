@@ -29,9 +29,9 @@ def nth_triangle_divisor_count(n: int) -> int:
     # either n or n + 1 will be even, and then can be evenly divided by two
     # both parts can be factorized to speed up process instead of the larger number
     if n % 2 == 0:
-        prime_fact = combine_factorizations([prime_factorization(n // 2), prime_factorization(n + 1)])
+        prime_fact = combine_factorizations(prime_factorization(n // 2), prime_factorization(n + 1))
     else:
-        prime_fact = combine_factorizations([prime_factorization(n), prime_factorization((n + 1) // 2)])
+        prime_fact = combine_factorizations(prime_factorization(n), prime_factorization((n + 1) // 2))
     return divisor_count_factorization(prime_fact)
 
 
