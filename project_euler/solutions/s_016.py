@@ -4,29 +4,15 @@
 
 # What is the sum of the digits of the number 2**1000?
 
-from typing import List
+from valkyrie_util.large import large_number_multiply
 
 
-def multiply_digits(digit_list: List[int], multiplier: int, base: int = 10) -> List[int]:
-    '''multiplies a list of digits by a small number,
-    each digit in the list should represent the value digit_list[index] * base ** index'''
-    product, magnitude, remainder = [], 0, 0
-    while remainder > 0 or magnitude < len(digit_list):
-        if magnitude < len(digit_list):
-            remainder += digit_list[magnitude] * multiplier
-        product.append(remainder % base)
-        remainder = remainder // base
-        magnitude += 1
-    return product
-
-
-def solve() -> int:
+def solve(base: int = 2, exponent: int = 1000) -> str:
     '''Problem 16 - Power digit sum'''
-    base, exponent = 2, 1000
     product = [1]
     for x in range(exponent):
-        product = multiply_digits(product, base)
-    return sum(product)
+        product = large_number_multiply(product, base)
+    return str(sum(product))
 
 
 if __name__ == '__main__':
