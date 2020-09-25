@@ -1,13 +1,13 @@
 from project_euler.solutions.s_014 import solve
 
 
-def test_s_014() -> None:
-    # basic example
+def test_simplified_version() -> None:
     answer = solve(limit=10)
     assert type(answer) == str
     assert answer == '9'
 
-    # solve
+
+def test_answer() -> None:
     answer = solve()
     assert type(answer) == str
     assert answer == '837799'
