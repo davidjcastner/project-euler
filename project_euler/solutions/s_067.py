@@ -18,20 +18,19 @@
 # If you could check one trillion (1012) routes every second it would take over twenty billion years to check them all.
 # There is an efficient algorithm to solve it. ;o)
 
-import os
-import pathlib
+from project_euler.data.util import read_data
 
 
-def solve() -> int:
+def solve(data_file: str = 'd_067.txt') -> int:
     '''Problem 67 - Maximum path sum II'''
-    data_file_path = os.path.join(pathlib.Path(__file__).parent.absolute(), 'input_data', 'pe_067.txt')
-    with open(data_file_path) as raw_data:
-        triangle_string = raw_data.read()
-    triangle_series = [[int(n) for n in line.split()] for line in triangle_string.split('\n')]
+    data = read_data(data_file)
+    triangle_series = [[int(n) for n in line.split()] for line in data.splitlines()]
     for depth in range(len(triangle_series) - 2, -1, -1):
         for index in range(len(triangle_series[depth])):
-            triangle_series[depth][index] = triangle_series[depth][index] + max(triangle_series[depth + 1][index], triangle_series[depth + 1][index + 1])
-    return triangle_series[0][0]
+            left_child_value = triangle_series[depth + 1][index]
+            right_child_value = triangle_series[depth + 1][index + 1]
+            triangle_series[depth][index] += max(left_child_value, right_child_value)
+    return str(triangle_series[0][0])
 
 
 if __name__ == '__main__':
