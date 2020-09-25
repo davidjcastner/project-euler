@@ -11,7 +11,7 @@ from valkyrie_util.factors import factorization_product, lcm_factorization, prim
 def solve(divisors: List[int] = list(range(1, 21))) -> str:
     '''Problem 5 - Smallest multiple'''
     prime_facts = [prime_factorization(d) for d in divisors]
-    return str(factorization_product(lcm_factorization(prime_facts)))
+    return str(factorization_product(lcm_factorization(*prime_facts)))
 
 
 if __name__ == '__main__':
