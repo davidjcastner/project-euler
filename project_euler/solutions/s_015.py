@@ -20,10 +20,9 @@ def n_choose_k(n: int, k: int) -> int:
     return factorial(n) // (factorial(k) * factorial(n - k))
 
 
-def solve() -> int:
+def solve(grid_width: int = 20, grid_height: int = 20) -> int:
     '''Problem 15 - Lattice paths'''
-    grid_size = 20
-    return n_choose_k(2 * grid_size, grid_size)
+    return str(n_choose_k(grid_width + grid_height, grid_height))
 
 
 if __name__ == '__main__':
