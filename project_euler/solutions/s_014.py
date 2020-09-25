@@ -15,30 +15,17 @@
 
 # NOTE: Once the chain starts the terms are allowed to go above one million.
 
-
-def collatz_length(n: int) -> int:
-    '''returns the length of the collatz sequence for c'''
-    if not hasattr(collatz_length, 'look_up'):
-        collatz_length.look_up = {1: 1}  # type: ignore
-    if n in collatz_length.look_up:  # type: ignore
-        return collatz_length.look_up[n]  # type: ignore
-    else:
-        next_value = n // 2 if n % 2 == 0 else 3 * n + 1
-        length = collatz_length(next_value) + 1
-        collatz_length.look_up[n] = length  # type: ignore
-        return length
+from valkyrie_util.collatz import collatz_length
 
 
-def solve() -> int:
+def solve(limit: int = 10 ** 6) -> str:
     '''Problem 14 - Longest Collatz sequence'''
     max_length, value = 1, 1
-    limit = 10 ** 6
     for n in range(1, limit):
         length = collatz_length(n)
         if length > max_length:
-            max_length = length
-            value = n
-    return value
+            max_length, value = length, n
+    return str(value)
 
 
 if __name__ == '__main__':
