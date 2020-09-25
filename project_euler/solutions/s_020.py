@@ -11,7 +11,8 @@ from typing import List
 
 
 def multiply_digits(digit_list: List[int], multiplier: int, base: int = 10) -> List[int]:
-    '''multiplies a list of digits by a small number, each digit in the list shoudl represent the value digit_list[index] * base ** index'''
+    '''multiplies a list of digits by a small number,
+    each digit in the list should represent the value digit_list[index] * base ** index'''
     product, magnitude, remainder = [], 0, 0
     while remainder > 0 or magnitude < len(digit_list):
         if magnitude < len(digit_list):
@@ -36,5 +37,5 @@ def solve() -> int:
     return sum(factorial_digits(n))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(solve())
