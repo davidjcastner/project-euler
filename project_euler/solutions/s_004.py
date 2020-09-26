@@ -25,7 +25,7 @@ def add_to_product_queue(queue: List[Tuple[int, int, int]], factor_a: int, facto
 
 def solve(digits: int = 3) -> str:
     '''Problem 4 - Largest palindrome product'''
-    max_factor = 10 ** digits - 1
+    max_factor: int = 10 ** digits - 1  # type:ignore
     product_queue = [(max_factor * max_factor, max_factor, max_factor)]
     while True:
         if is_palindrome(product_queue[0][0]):
