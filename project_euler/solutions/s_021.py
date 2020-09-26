@@ -8,30 +8,17 @@
 
 # Evaluate the sum of all the amicable numbers under 10000.
 
-from typing import List
-from valkyrie_util.factors import proper_divisors
+from valkyrie_util.factors import proper_divisor_sum
 
 
-class _divisor_sums:
-    '''internal memory of divisors sum'''
-    __known_sums: List[int] = [0]
-
-    @staticmethod
-    def get_sum(n: int) -> int:
-        '''returns the sum of proper divisors of n'''
-        current_length = len(_divisor_sums.__known_sums)
-        if n >= current_length:
-            _divisor_sums.__known_sums += [sum(proper_divisors(x)) for x in range(current_length, n + 1)]
-        return _divisor_sums.__known_sums[n]
+def is_amicable(n: int) -> bool:
+    '''checks if n is amicable'''
+    return proper_divisor_sum(n) != n and proper_divisor_sum(proper_divisor_sum(n)) == n
 
 
 def solve(limit: int = 10000) -> str:
     '''Problem 21 - Amicable numbers'''
-    amicable_sum = 0
-    for n in range(1, limit):
-        if _divisor_sums.get_sum(n) != n and _divisor_sums.get_sum(_divisor_sums.get_sum(n)) == n:
-            amicable_sum += n
-    return str(amicable_sum)
+    return str(sum([n for n in range(1, limit) if is_amicable(n)]))
 
 
 if __name__ == '__main__':
