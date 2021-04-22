@@ -1,4 +1,4 @@
-'''helpers for reading and structing data in the data directory'''
+'''helpers for reading and structuring data in the data directory'''
 
 import os
 
