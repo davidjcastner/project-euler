@@ -10,7 +10,7 @@
 from valkyrie_util.large import large_number_multiply
 
 
-def solve(n: int = 100) -> int:
+def solve(n: int = 100) -> str:
     '''Problem 20 - Factorial digit sum'''
     product = [1]
     for multiplier in range(2, n):

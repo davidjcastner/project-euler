@@ -9,7 +9,7 @@
 # Find the product abc.
 
 
-def solve(triplet_sum: int = 1000) -> int:
+def solve(triplet_sum: int = 1000) -> str:
     '''Problem 9 - Special Pythagorean triplet'''
     squares = set()
     for x in range(1, triplet_sum):

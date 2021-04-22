@@ -21,7 +21,7 @@
 from project_euler.data.util import read_data
 
 
-def solve(data_file: str = 'd_067.txt') -> int:
+def solve(data_file: str = 'd_067.txt') -> str:
     '''Problem 67 - Maximum path sum II'''
     data = read_data(data_file)
     triangle_series = [[int(n) for n in line.split()] for line in data.splitlines()]
