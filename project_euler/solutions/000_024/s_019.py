@@ -13,7 +13,7 @@
 # How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 
 
-from project_euler.lib.dates import Date, increment_month
+from project_euler.lib.dates import Date, increment_day
 
 
 def solve(limit: int = 2000) -> str:
@@ -21,9 +21,9 @@ def solve(limit: int = 2000) -> str:
     current = Date(1, 1, 1900, 0)
     sundays = 0
     while current.year <= limit:
-        if current.year >= 1901 and current.dayofweek == 6:
+        if current.year >= 1901 and current.dayofweek == 6 and current.day == 1:
             sundays += 1
-        current = increment_month(current)
+        current = increment_day(current)
     return str(sundays)
 
 

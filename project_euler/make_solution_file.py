@@ -62,7 +62,7 @@ def write_solution_file(n: int) -> None:
     title = content.find('h2').text
     description = content.find('div', class_='problem_content').text
     with open(solution_filepath(n), 'w') as f:
-        f.write(comment(title, f'Problem {str(n)}', description))
+        f.write(comment(title, f'Problem {str(n)}', problem_url(n), description))
         f.write(f'''
 def solve() -> str:
     \'\'\'Problem {str(n)} - {title}\'\'\'

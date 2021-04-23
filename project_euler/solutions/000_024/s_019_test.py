@@ -10,4 +10,4 @@ def test_simplified_version() -> None:
 def test_answer() -> None:
     answer = solve()
     assert type(answer) == str
-    assert answer == '0'
+    assert answer == '171'
