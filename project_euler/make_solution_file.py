@@ -62,7 +62,13 @@ def write_solution_file(n: int) -> None:
     title = content.find('h2').text
     description = content.find('div', class_='problem_content').text
     with open(solution_filepath(n), 'w') as f:
-        f.write(comment(title, f'Problem {str(n)}', problem_url(n), description))
+        # write all decodeable characters
+        # f.write(comment(title, f'Problem {str(n)}', problem_url(n), description))
+        for c in comment(title, f'Problem {str(n)}', problem_url(n), description):
+            try:
+                f.write(c)
+            except Exception as e:
+                print(e)
         f.write(f'''
 def solve() -> str:
     \'\'\'Problem {str(n)} - {title}\'\'\'
