@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 import math
-
-# TODO: make instance of dict
+from src.lib.utility import merge_dict
 
 
 class Factorization:
@@ -10,7 +9,8 @@ class Factorization:
 
     def __init__(self, factors: dict[int, int] = dict()):
         assert isinstance(factors, dict)
-        assert all(isinstance(base, int) and isinstance(exp, int) for base, exp in factors.items())
+        assert all(isinstance(base, int) for base, exp in factors.items())
+        assert all(isinstance(exp, int) for base, exp in factors.items())
         assert all(base > 0 and exp > 0 for base, exp in factors.items())
         self.__factors = factors
 
@@ -24,6 +24,9 @@ class Factorization:
         min_str = min_str.removeprefix('{').removesuffix('}')
         return hash(min_str)
 
+    def __dict__(self):
+        return self.__factors.copy()
+
     def copy(self) -> Factorization:
         return Factorization(self.__factors)
 
@@ -31,10 +34,16 @@ class Factorization:
         '''computes the value of the factorization'''
         return math.prod(base ** exp for base, exp in self.__factors.items())
 
+    def __mul__(self, other: Factorization) -> Factorization:
+        '''combines the two factorizations, result is equivalent to multiplying
+        the two values of the factorizations'''
+        assert isinstance(other, Factorization)
+        return Factorization(
+            merge_dict(lambda v1, v2: v1 + v2, self.__factors, other.__factors))
 
-if __name__ == '__main__':
-    f = Factorization({2: 2, 3: 1})
-    d = {f: 1}
-    print(f)
-    print(d)
-    print(f.get_value())
+    def divisor_count(self) -> int:
+        '''returns the number of divisors'''
+        count = 1
+        for base, exp in self.__factors:
+            count *= exp + 1
+        return count

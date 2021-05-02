@@ -1,7 +1,7 @@
 import pytest
-from src.lib.collatz import next_collatz
 from src.lib.collatz import collatz_generator
 from src.lib.collatz import collatz_length
+from src.lib.collatz import next_collatz
 
 
 def test_next_collatz() -> None:

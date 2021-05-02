@@ -1,6 +1,6 @@
-from src.lib.primes import prime_generator
 from src.lib.primes import is_prime
 from src.lib.primes import nth_prime
+from src.lib.primes import prime_generator
 
 
 def test_prime_generator() -> None:
