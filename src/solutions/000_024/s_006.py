@@ -12,12 +12,13 @@
 # Find the difference between the sum of the squares of the first one hundred
 # natural numbers and the square of the sum.
 
-from project_euler.lib.calculate import range_sum_int, sum_of_squares
+from src.lib.calculate import sum_range
+from src.lib.calculate import sum_squares
 
 
 def solve(n: int = 100) -> str:
     '''Problem 6 - Sum square difference'''
-    return str(range_sum_int(1, n) ** 2 - sum_of_squares(n))
+    return str(sum_range(1, n) ** 2 - sum_squares(n))
 
 
 def test_simplified_version() -> None:
