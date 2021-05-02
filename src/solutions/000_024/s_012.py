@@ -22,20 +22,21 @@
 # What is the value of the first triangle number to have over five hundred
 # divisors?
 
-from project_euler.lib.factors import combine_factorizations, divisor_count_factorization, prime_factorization
-from project_euler.lib.triangle import nth_triangle_number
+from src.lib.factors import factorize
+from src.lib.triangle import nth_triangle_number
 
 
 def nth_triangle_divisor_count(n: int) -> int:
     '''returns the numbers of divisors for the nth triangle number'''
     # because triangle numbers = n * (n + 1) // 2,
     # either n or n + 1 will be even, and then can be evenly divided by two
-    # both parts can be factorized to speed up process instead of the larger number
+    # both parts can be factorized to speed up process instead of
+    # using the larger number
     if n % 2 == 0:
-        prime_fact = combine_factorizations(prime_factorization(n // 2), prime_factorization(n + 1))
+        fact = factorize(n // 2) * factorize(n + 1)
     else:
-        prime_fact = combine_factorizations(prime_factorization(n), prime_factorization((n + 1) // 2))
-    return divisor_count_factorization(prime_fact)
+        fact = factorize(n) * factorize((n + 1) // 2)
+    return fact.divisor_count()
 
 
 def solve(divisor_count: int = 500) -> str:

@@ -5,15 +5,14 @@
 # Work out the first ten digits of the sum of the following one-hundred 50-digit
 # numbers.
 
-from project_euler.data.util import read_data
-from project_euler.lib.large import large_number_sum, large_number_to_string, string_to_large_number
+from src.lib.utility import read_lines
 
 
 def solve(digits: int = 10, data_file: str = 'd_013.txt') -> str:
     '''Problem 13 - Large sum'''
-    data = read_data(data_file)
-    addends = [string_to_large_number(line) for line in data.splitlines()]
-    return large_number_to_string(large_number_sum(*addends))[:digits]
+    data = read_lines(data_file)
+    data = (int(n) for n in data)
+    return str(sum(data))[:digits]
 
 
 def test_simplified_version() -> None:

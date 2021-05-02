@@ -19,7 +19,7 @@
 
 # NOTE: Once the chain starts the terms are allowed to go above one million.
 
-from project_euler.lib.collatz import collatz_length
+from src.lib.collatz import collatz_length
 
 
 def solve(limit: int = 10 ** 6) -> str:

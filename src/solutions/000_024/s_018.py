@@ -36,20 +36,19 @@
 # hundred rows;
 # it cannot be solved by brute force, and requires a clever method!; o)
 
-
-from project_euler.data.util import read_data
+from src.lib.utility import read_lines
 
 
 def solve(data_file: str = 'd_018.txt') -> str:
     '''Problem 18 - Maximum path sum I'''
-    data = read_data(data_file)
-    triangle_series = [[int(n) for n in line.split()] for line in data.splitlines()]
-    for depth in range(len(triangle_series) - 2, -1, -1):
-        for index in range(len(triangle_series[depth])):
-            left_child_value = triangle_series[depth + 1][index]
-            right_child_value = triangle_series[depth + 1][index + 1]
-            triangle_series[depth][index] += max(left_child_value, right_child_value)
-    return str(triangle_series[0][0])
+    data = read_lines(data_file)
+    series = [[int(n) for n in line.split()] for line in data]
+    for depth in range(len(series) - 2, -1, -1):
+        for index in range(len(series[depth])):
+            left_child_value = series[depth + 1][index]
+            right_child_value = series[depth + 1][index + 1]
+            series[depth][index] += max(left_child_value, right_child_value)
+    return str(series[0][0])
 
 
 def test_simplified_version() -> None:

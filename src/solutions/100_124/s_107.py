@@ -24,7 +24,7 @@
 # maximum saving which can be achieved by removing redundant edges whilst
 # ensuring that the network remains connected.
 
-from project_euler.data.util import read_data
+from src.lib.utility import read_lines
 
 Network = list[list[int]]
 # node index, node weight
@@ -33,8 +33,7 @@ Stack = list[Node]
 
 
 def read_network(data_file: str) -> Network:
-    data = read_data(data_file)
-    data = data.splitlines()
+    data = read_lines(data_file)
     data = [line.split(',') for line in data]
     data = [[0 if val == '-' else int(val) for val in line] for line in data]
     return data

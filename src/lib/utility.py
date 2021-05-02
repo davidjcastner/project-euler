@@ -39,3 +39,10 @@ def read_raw_data(filename: str) -> str:
     with open(filepath, 'r') as contents:
         data = contents.read()
     return data
+
+
+def read_lines(filename: str) -> str:
+    '''reads file and returns a list of strings based on new lines,
+    strips empty lines'''
+    lines = read_raw_data(filename).splitlines()
+    return list(filter(lambda s: len(s) > 0, lines))
