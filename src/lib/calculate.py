@@ -1,5 +1,9 @@
 '''shortcut formulas for fast calculations'''
 
+from src.lib.struct import Factorization
+from src.lib.factors import factorize
+from src.lib.utility import merge_dict
+
 
 def sum_range(beg: int, end: int, divisor: int = 1) -> int:
     '''returns the sum of all integers in the range [beg, end) that are
@@ -17,3 +21,11 @@ def sum_squares(n: int) -> int:
     '''returns the sum of squares for the integers 1 to n'''
     assert isinstance(n, int) and n >= 0
     return n * (n + 1) * (2 * n + 1) // 6
+
+
+def least_common_multiple(*args: tuple[int]) -> int:
+    '''returns the least common multiple for all positive integers given'''
+    assert all(isinstance(n, int) and n > 0 for n in args)
+    # lcm can be found by combining factorizations and taking max of overlap
+    fact = Factorization(merge_dict(max, *(dict(factorize(n)) for n in args)))
+    return fact.get_value()

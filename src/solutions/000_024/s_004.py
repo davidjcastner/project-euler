@@ -3,7 +3,8 @@
 # https://projecteuler.net/problem=4
 
 # A palindromic number reads the same both ways.
-# The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+# The largest palindrome made from the product of two 2-digit numbers is 9009 =
+# 91 × 99.
 
 # Find the largest palindrome made from the product of two 3-digit numbers.
 
@@ -12,13 +13,19 @@ def is_palindrome(n: int) -> bool:
     return str(n) == str(n)[::-1]
 
 
-def add_to_product_queue(queue: List[Tuple[int, int, int]], factor_a: int, factor_b: int) -> None:
-    '''inserts the product and both factors to the correct position within the queue'''
+def add_to_product_queue(
+    queue: list[tuple[int, int, int]],
+    factor_a: int,
+    factor_b: int
+) -> None:
+    '''inserts the product and both factors to the correct position
+    within the queue'''
     product = factor_a * factor_b
     index = 0
     while index < len(queue) and product < queue[index][0]:
         index += 1
-    if index >= len(queue) or not (queue[index][1] == factor_a and queue[index][2] == factor_b):
+    if index >= len(queue) or not (
+            queue[index][1] == factor_a and queue[index][2] == factor_b):
         queue.insert(index, (product, factor_a, factor_b))
 
 

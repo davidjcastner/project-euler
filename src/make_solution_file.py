@@ -26,13 +26,8 @@ def solution_filepath(n: int) -> str:
     return os.path.join(solution_dir(n), filename)
 
 
-def solution_test_filepath(n: int) -> str:
-    filename = f's_{str(n).zfill(3)}_test.py'
-    return os.path.join(solution_dir(n), filename)
-
-
 def solution_files_exist(n: int) -> bool:
-    return os.path.exists(solution_filepath(n)) or os.path.exists(solution_test_filepath(n))
+    return os.path.exists(solution_filepath(n))
 
 
 def touch_directory(p: str) -> None:
@@ -47,7 +42,8 @@ def touch_directory(p: str) -> None:
 
 def comment(*args: list[str]) -> str:
     comments = [c.split(NEW_LINE) for c in args]
-    comments = [[f'# {line}{NEW_LINE}' if len(line) > 0 else NEW_LINE for line in lines] for lines in comments]
+    comments = [[f'# {line}{NEW_LINE}' if len(line) > 0 else NEW_LINE
+                 for line in lines] for lines in comments]
     return str().join([str().join(lines) for lines in comments])
 
 
@@ -63,8 +59,11 @@ def write_solution_file(n: int) -> None:
     description = content.find('div', class_='problem_content').text
     with open(solution_filepath(n), 'w') as f:
         # write all decodeable characters
-        # f.write(comment(title, f'Problem {str(n)}', problem_url(n), description))
-        for c in comment(title, f'Problem {str(n)}', problem_url(n), description):
+        for c in comment(
+            title,
+            f'Problem {str(n)}',
+            problem_url(n),
+                description):
             try:
                 f.write(c)
             except Exception as e:
@@ -73,16 +72,6 @@ def write_solution_file(n: int) -> None:
 def solve() -> str:
     \'\'\'Problem {str(n)} - {title}\'\'\'
     return str()
-
-
-if __name__ == \'__main__\':
-    print(solve())
-''')
-
-
-def write_solution_test_file(n: int) -> None:
-    with open(solution_test_filepath(n), 'w') as f:
-        f.write(f'''from s_{str(n).zfill(3)} import solve
 
 
 def test_simplified_version() -> None:
@@ -95,6 +84,10 @@ def test_answer() -> None:
     answer = solve()
     assert type(answer) == str
     assert answer == '0'
+
+
+if __name__ == \'__main__\':
+    print(solve())
 ''')
 
 
@@ -106,7 +99,6 @@ def make_problem(n: int) -> None:
     # ensure directory exists
     touch_directory(solution_dir(n))
     write_solution_file(n)
-    write_solution_test_file(n)
 
 
 if __name__ == '__main__':

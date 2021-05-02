@@ -8,14 +8,12 @@
 # What is the smallest positive number that is evenly divisible by all of the
 # numbers from 1 to 20?
 
-from typing import List
-from project_euler.lib.factors import factorization_product, lcm_factorization, prime_factorization
+from src.lib.calculate import least_common_multiple as lcm
 
 
-def solve(divisors: List[int] = list(range(1, 21))) -> str:
+def solve(divisors: list[int] = list(range(1, 21))) -> str:
     '''Problem 5 - Smallest multiple'''
-    prime_facts = [prime_factorization(d) for d in divisors]
-    return str(factorization_product(lcm_factorization(*prime_facts)))
+    return str(lcm(*divisors))
 
 
 def test_simplified_version() -> None:

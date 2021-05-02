@@ -19,7 +19,10 @@ def fact(n: int) -> int:
     return n * fact(n - 1) if n else 1
 
 
-def solve(items: set[str] = set([str(x) for x in range(10)]), n: int = 1_000_000) -> str:
+def solve(
+    items: set[str] = set([str(x) for x in range(10)]),
+    n: int = 1_000_000
+) -> str:
     '''Problem 24 - Lexicographic permutations'''
     # total permutations = len(items)!
     # reset n to start at 0

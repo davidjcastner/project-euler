@@ -1,3 +1,4 @@
+from src.lib.calculate import least_common_multiple
 from src.lib.calculate import sum_range
 from src.lib.calculate import sum_squares
 
@@ -32,3 +33,12 @@ def test_sum_squares() -> None:
     assert sum_squares(4) == 30
     assert sum_squares(5) == 55
     assert sum_squares(10) == 385
+
+
+def test_least_common_multiple() -> None:
+    assert least_common_multiple() == 1
+    assert least_common_multiple(1) == 1
+    assert least_common_multiple(2, 3) == 6
+    assert least_common_multiple(2, 3, 5) == 30
+    assert least_common_multiple(4, 8) == 8
+    assert least_common_multiple(2, 25, 8, 5, 10) == 200
