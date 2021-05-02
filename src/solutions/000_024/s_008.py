@@ -29,23 +29,29 @@
 # Find the thirteen adjacent digits in the 1000-digit number that have the
 # greatest product. What is the value of this product?
 
-from functools import reduce
+# from functools import reduce
+import math
 import re
-from typing import Callable
-from project_euler.data.util import read_data
+from src.lib.utility import read_raw_data
 
 
-def solve(factor_count: int = 13, data_file: str = 'd_008.txt') -> str:
+def solve(factors: int = 13, data_file: str = 'd_008.txt') -> str:
     '''Problem 8 - Largest product in a series'''
-    data = read_data(data_file)
+    data = read_raw_data(data_file)
+    # replace all non digits with empty strings then convert string to integers
     series = [int(c) for c in re.sub(r'\D', '', data)]
-    multiply: Callable[[int, int], int] = lambda x, y: x * y
-    products = [reduce(multiply, series[start:start + factor_count]) for start in range(len(series) - factor_count + 1)]
+    # get all starting indexes
+    subsets = (start for start in range(len(series) - factors + 1))
+    # get all subsets based on starting indexes
+    subsets = (series[start:(start + factors)] for start in subsets)
+    # calculate products
+    products = (math.prod(subset) for subset in subsets)
+    # return max product
     return str(max(products))
 
 
 def test_simplified_version() -> None:
-    answer = solve(factor_count=4, data_file='d_008.txt')
+    answer = solve(factors=4, data_file='d_008.txt')
     assert type(answer) == str
     assert answer == '5832'
 
