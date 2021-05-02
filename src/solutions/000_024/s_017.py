@@ -1,5 +1,7 @@
 # Number letter counts
 # Problem 17
+# https://projecteuler.net/problem=17
+
 # If the numbers 1 to 5 are written out in words: one, two, three, four, five,
 # then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
 
@@ -31,6 +33,18 @@ def solve(n: int = 1000) -> str:
     for x in range(1, n + 1):
         s += len(strip_non_alpha(num2words(x)))
     return str(s)
+
+
+def test_simplified_version() -> None:
+    answer = solve(n=5)
+    assert type(answer) == str
+    assert answer == '19'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '21124'
 
 
 if __name__ == '__main__':

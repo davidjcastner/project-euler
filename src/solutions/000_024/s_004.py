@@ -1,12 +1,11 @@
 # Largest palindrome product
 # Problem 4
+# https://projecteuler.net/problem=4
+
 # A palindromic number reads the same both ways.
 # The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 
 # Find the largest palindrome made from the product of two 3-digit numbers.
-
-from typing import List, Tuple
-
 
 def is_palindrome(n: int) -> bool:
     '''checks if n is a palindrome'''
@@ -34,6 +33,18 @@ def solve(digits: int = 3) -> str:
         add_to_product_queue(product_queue, factor_a, factor_b - 1)
         if factor_a > factor_b:
             add_to_product_queue(product_queue, factor_a - 1, factor_b)
+
+
+def test_simplified_version() -> None:
+    answer = solve(digits=2)
+    assert type(answer) == str
+    assert answer == '9009'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '906609'
 
 
 if __name__ == '__main__':

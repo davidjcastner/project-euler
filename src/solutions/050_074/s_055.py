@@ -48,5 +48,17 @@ def solve(limit: int = 10_000) -> str:
     return str(sum((0 if is_lychrel(x) else 1 for x in range(limit))))
 
 
+def test_simplified_version() -> None:
+    answer = solve(limit=888)
+    assert type(answer) == str
+    assert answer == '11'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '249'
+
+
 if __name__ == '__main__':
     print(solve())

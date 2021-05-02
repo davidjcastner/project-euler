@@ -36,6 +36,7 @@ def find_min_path(
         start: tuple[int, int],
         is_end: Callable[[int, int], bool]) -> int:
     # start at one locations and add all
+    pass
 
 
 def solve(data_file: str = 'd_082.txt') -> str:
@@ -51,6 +52,18 @@ def solve(data_file: str = 'd_082.txt') -> str:
         start=(row, 0),
         is_end=is_end_location) for row in range(matrix.rows))
     return str(answer)
+
+
+def test_simplified_version() -> None:
+    answer = solve(data_file='d_082.basic.txt')
+    assert type(answer) == str
+    assert answer == '994'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '0'
 
 
 if __name__ == '__main__':

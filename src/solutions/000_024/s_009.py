@@ -1,5 +1,7 @@
 # Special Pythagorean triplet
 # Problem 9
+# https://projecteuler.net/problem=9
+
 # A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
 
 # a2 + b2 = c2
@@ -22,6 +24,18 @@ def solve(triplet_sum: int = 1000) -> str:
                 # print(f'{a}^2 + {b}^2 = {c}^2, {a **2} + {b**2} = {c**2}')
                 return str(a * b * c)
     return '0'
+
+
+def test_simplified_version() -> None:
+    answer = solve(triplet_sum=30)
+    assert type(answer) == str
+    assert answer == '780'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '31875000'
 
 
 if __name__ == '__main__':

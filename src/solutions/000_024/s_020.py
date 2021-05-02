@@ -1,5 +1,7 @@
 # Factorial digit sum
 # Problem 20
+# https://projecteuler.net/problem=20
+
 # n! means n × (n − 1) × ... × 3 × 2 × 1
 
 # For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,
@@ -16,6 +18,18 @@ def solve(n: int = 100) -> str:
     for multiplier in range(2, n):
         product = large_number_multiply(product, multiplier)
     return str(sum(product))
+
+
+def test_simplified_version() -> None:
+    answer = solve(n=10)
+    assert type(answer) == str
+    assert answer == '27'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '648'
 
 
 if __name__ == '__main__':

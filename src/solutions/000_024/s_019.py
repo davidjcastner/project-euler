@@ -1,5 +1,6 @@
 # Counting Sundays
 # Problem 19
+# https://projecteuler.net/problem=19
 
 # You are given the following information, but you may prefer to do some research for yourself.
 # 1 Jan 1900 was a Monday.
@@ -25,6 +26,18 @@ def solve(limit: int = 2000) -> str:
             sundays += 1
         current = increment_day(current)
     return str(sundays)
+
+
+def test_simplified_version() -> None:
+    answer = solve(limit=1901)
+    assert type(answer) == str
+    assert answer == '2'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '171'
 
 
 if __name__ == '__main__':

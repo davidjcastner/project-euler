@@ -1,5 +1,7 @@
 # Distinct powers
 # Problem 29
+# https://projecteuler.net/problem=29
+
 # Consider all integer combinations of ab for 2 ≤ a ≤ 5 and 2 ≤ b ≤ 5:
 
 # 2**2=4, 2**3=8, 2**4=16, 2**5=32
@@ -38,6 +40,18 @@ def solve(base: Iterable[int] = range(2, 101), exponent: Iterable[int] = range(2
     '''Problem 29 - Distinct powers'''
     distinct_powers = set(hash_power(a, b) for a, b in itertools.product(base, exponent))
     return str(len(distinct_powers))
+
+
+def test_simplified_version() -> None:
+    answer = solve(base=range(2, 6), exponent=range(2, 6))
+    assert type(answer) == str
+    assert answer == '15'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '9183'
 
 
 if __name__ == '__main__':

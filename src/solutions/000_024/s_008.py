@@ -1,6 +1,9 @@
 # Largest product in a series
 # Problem 8
-# The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
+# https://projecteuler.net/problem=8
+
+# The four adjacent digits in the 1000-digit number that have the greatest
+# product are 9 × 9 × 8 × 9 = 5832.
 
 # 73167176531330624919225119674426574742355349194934
 # 96983520312774506326239578318016984801869478851843
@@ -23,7 +26,8 @@
 # 05886116467109405077541002256983155200055935729725
 # 71636269561882670428252483600823257530420752963450
 
-# Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
+# Find the thirteen adjacent digits in the 1000-digit number that have the
+# greatest product. What is the value of this product?
 
 from functools import reduce
 import re
@@ -38,6 +42,18 @@ def solve(factor_count: int = 13, data_file: str = 'd_008.txt') -> str:
     multiply: Callable[[int, int], int] = lambda x, y: x * y
     products = [reduce(multiply, series[start:start + factor_count]) for start in range(len(series) - factor_count + 1)]
     return str(max(products))
+
+
+def test_simplified_version() -> None:
+    answer = solve(factor_count=4, data_file='d_008.txt')
+    assert type(answer) == str
+    assert answer == '5832'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '23514624000'
 
 
 if __name__ == '__main__':

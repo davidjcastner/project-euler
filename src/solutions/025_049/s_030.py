@@ -31,5 +31,17 @@ def solve(n: int = 5) -> str:
     return str(result)
 
 
+def test_simplified_version() -> None:
+    answer = solve(n=4)
+    assert type(answer) == str
+    assert answer == '19316'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '443839'
+
+
 if __name__ == '__main__':
     print(solve())

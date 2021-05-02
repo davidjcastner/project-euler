@@ -1,5 +1,7 @@
 # 1000-digit Fibonacci number
 # Problem 25
+# https://projecteuler.net/problem=25
+
 # The Fibonacci sequence is defined by the recurrence relation:
 
 # Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
@@ -19,7 +21,8 @@
 # F12 = 144
 # The 12th term, F12, is the first term to contain three digits.
 
-# What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
+# What is the index of the first term in the Fibonacci sequence to contain 1000
+# digits?
 
 
 from typing import Generator, List
@@ -42,6 +45,18 @@ def solve(digits: int = 1000) -> str:
         if len(large_n) >= digits:
             break
     return str(index)
+
+
+def test_simplified_version() -> None:
+    answer = solve(digits=3)
+    assert type(answer) == str
+    assert answer == '12'
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '4782'
 
 
 if __name__ == '__main__':

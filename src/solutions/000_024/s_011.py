@@ -1,6 +1,9 @@
 # Largest product in a grid
 # Problem 11
-# In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
+# https://projecteuler.net/problem=11
+
+# In the 20×20 grid below, four numbers along a diagonal line have been marked
+# in red.
 
 # 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 # 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -97,6 +100,18 @@ def solve(series_length: int = 4, data_file: str = 'd_011.txt') -> str:
             max_product = max(max_product, reduce(multiply, factors))
 
     return str(max_product)
+
+
+def test_simplified_version() -> None:
+    answer = solve(series_length=2, data_file='d_011.txt')
+    assert type(answer) == str
+    assert answer == str(97 * 99)
+
+
+def test_answer() -> None:
+    answer = solve()
+    assert type(answer) == str
+    assert answer == '70600674'
 
 
 if __name__ == '__main__':
