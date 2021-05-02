@@ -7,7 +7,7 @@
 
 # What is the 10 001st prime number?
 
-from project_euler.lib.primes import nth_prime
+from src.lib.primes import nth_prime
 
 
 def solve(n: int = 10001) -> str:
