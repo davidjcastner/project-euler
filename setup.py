@@ -16,5 +16,5 @@ setuptools.setup(
     url='https://github.com/davidjcastner/project-euler',
     packages=setuptools.find_packages(),
     classifiers=[],
-    python_requires='>=3.8',
+    python_requires='>=3.9',
 )

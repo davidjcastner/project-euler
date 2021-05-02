@@ -1,8 +1,9 @@
-from project_euler.lib.fibonacci import fibonacci_iterator
+from src.lib.fibonacci import fibonacci_generator
 
 
-def test_normal_cases() -> None:
-    gen = fibonacci_iterator()
+def test_fibonacci_generator() -> None:
+    # start from beginning
+    gen = fibonacci_generator()
     assert next(gen) == 1
     assert next(gen) == 1
     assert next(gen) == 2
@@ -15,9 +16,8 @@ def test_normal_cases() -> None:
     assert next(gen) == 55
     assert next(gen) == 89
 
-
-def test_special_cases() -> None:
-    gen = fibonacci_iterator(a=8, b=13)
+    # start from non standard place
+    gen = fibonacci_generator(a=8, b=13)
     assert next(gen) == 8
     assert next(gen) == 13
     assert next(gen) == 21
@@ -25,9 +25,8 @@ def test_special_cases() -> None:
     assert next(gen) == 55
     assert next(gen) == 89
 
-
-def test_unusual_input() -> None:
-    gen = fibonacci_iterator(a=8, b=-3)
+    # generator non standard sequence
+    gen = fibonacci_generator(a=8, b=-3)
     assert next(gen) == 8
     assert next(gen) == -3
     assert next(gen) == 5
