@@ -47,3 +47,10 @@ class Factorization:
         for base, exp in self.__factors:
             count *= exp + 1
         return count
+
+    def exponentiate(self, exponent: int) -> int:
+        '''returns the factorization of self**exponent'''
+        result = self.copy()
+        for base in result.__factors:
+            result[base] = result[base] * exponent
+        return result

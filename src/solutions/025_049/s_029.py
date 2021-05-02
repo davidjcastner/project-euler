@@ -17,35 +17,19 @@
 # and 2 ≤ b ≤ 100?
 
 import itertools
-from typing import Dict, Iterable
-from project_euler.lib.factors import prime_factorization
+from src.lib.factors import factorize
 
 
-def factorization_power(fact: Dict[int, int], exponent: int) -> Dict[int, int]:
-    '''returns the factorization raised to the exponent'''
-    return {b: e * exponent for b, e in fact.items()}
-
-
-def factorization_hash(fact: Dict[int, int]) -> str:
-    '''creates a unique string for the factorization so it can be put into a set'''
-    factors = [f'{b}:{e}'for b, e in fact.items()]
-    factors.sort()
-    return ','.join(factors)
-
-
-def hash_power(base: int, exp: int) -> str:
-    '''calculates the power and hashes it'''
-    return factorization_hash(factorization_power(prime_factorization(base), exp))
-
-
-def solve(base: Iterable[int] = range(2, 101), exponent: Iterable[int] = range(2, 101)) -> str:
+def solve(n: int = 100) -> str:
     '''Problem 29 - Distinct powers'''
-    distinct_powers = set(hash_power(a, b) for a, b in itertools.product(base, exponent))
+    distinct_powers = set()
+    for a, b in itertools.product(range(2, n + 1), range(2, n + 1)):
+        distinct_powers.add(factorize(a).exponentiate(b))
     return str(len(distinct_powers))
 
 
 def test_simplified_version() -> None:
-    answer = solve(base=range(2, 6), exponent=range(2, 6))
+    answer = solve(n=5)
     assert type(answer) == str
     assert answer == '15'
 
