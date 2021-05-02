@@ -6,13 +6,13 @@
 
 # Find the sum of all the primes below two million.
 
-from project_euler.lib.primes import prime_iterator
+from src.lib.primes import prime_generator
 
 
 def solve(limit: int = 2 * 10 ** 6) -> str:
     '''Problem 10 - Summation of primes'''
     prime_sum = 0
-    for prime in prime_iterator():
+    for prime in prime_generator():
         if prime >= limit:
             break
         prime_sum += prime
