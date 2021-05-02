@@ -6,15 +6,12 @@
 
 # What is the sum of the digits of the number 2**1000?
 
-from project_euler.lib.large import large_number_multiply
-
 
 def solve(base: int = 2, exponent: int = 1000) -> str:
     '''Problem 16 - Power digit sum'''
-    product = [1]
-    for x in range(exponent):
-        product = large_number_multiply(product, base)
-    return str(sum(product))
+    product = base**exponent
+    digits = (int(c) for c in str(product))
+    return str(sum(digits))
 
 
 def test_simplified_version() -> None:

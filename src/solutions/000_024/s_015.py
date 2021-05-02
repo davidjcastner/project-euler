@@ -6,15 +6,9 @@
 # and only being able to move to the right and down,
 # there are exactly 6 routes to the bottom right corner.
 
-
 # How many such routes are there through a 20×20 grid?
 
-def factorial(n: int) -> int:
-    '''returns n!'''
-    if n == 1 or n == 0:
-        return 1
-    else:
-        return n * factorial(n - 1)
+from src.lib.calculate import factorial
 
 
 def n_choose_k(n: int, k: int) -> int:

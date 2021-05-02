@@ -25,26 +25,16 @@
 # digits?
 
 
-from typing import Generator, List
-from project_euler.lib.large import large_number_sum
-
-
-def large_fibonacci() -> Generator[List[int], None, None]:
-    '''iterates through the fibonaccie sequence using starting values'''
-    a, b = [1], [1]
-    while True:
-        yield a
-        a, b = b.copy(), large_number_sum(a, b)
+from src.lib.fibonacci import fibonacci_generator
 
 
 def solve(digits: int = 1000) -> str:
     '''Problem 25 - 1000-digit Fibonacci number'''
-    gen, index = large_fibonacci(), 0
-    while True:
-        large_n, index = next(gen), index + 1
-        if len(large_n) >= digits:
+    limit = 10 ** (digits - 1)
+    for index, fib in enumerate(fibonacci_generator()):
+        if fib > limit:
             break
-    return str(index)
+    return str(index + 1)
 
 
 def test_simplified_version() -> None:

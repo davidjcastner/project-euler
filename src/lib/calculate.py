@@ -1,5 +1,6 @@
 '''shortcut formulas for fast calculations'''
 
+from functools import cache
 from src.lib.struct import Factorization
 from src.lib.factors import factorize
 from src.lib.utility import merge_dict
@@ -21,6 +22,13 @@ def sum_squares(n: int) -> int:
     '''returns the sum of squares for the integers 1 to n'''
     assert isinstance(n, int) and n >= 0
     return n * (n + 1) * (2 * n + 1) // 6
+
+
+@cache
+def factorial(n: int) -> int:
+    '''returns n! for integers >= 0'''
+    assert isinstance(n, int) and n >= 0
+    return n * factorial(n - 1) if n > 1 else 1
 
 
 def least_common_multiple(*args: tuple[int]) -> int:

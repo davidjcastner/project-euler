@@ -9,15 +9,14 @@
 
 # Find the sum of the digits in the number 100!
 
-from project_euler.lib.large import large_number_multiply
+from src.lib.calculate import factorial
 
 
 def solve(n: int = 100) -> str:
     '''Problem 20 - Factorial digit sum'''
-    product = [1]
-    for multiplier in range(2, n):
-        product = large_number_multiply(product, multiplier)
-    return str(sum(product))
+    product = factorial(n)
+    digits = (int(c) for c in str(product))
+    return str(sum(digits))
 
 
 def test_simplified_version() -> None:
