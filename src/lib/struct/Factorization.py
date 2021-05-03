@@ -20,9 +20,12 @@ class Factorization:
     def __hash__(self):
         # get the str representation of a dict
         # remove unnecessary whitespace and braces, leave delimiters : and ,
-        min_str = str(self.__factors).replace(' ', '')
-        min_str = min_str.removeprefix('{').removesuffix('}')
-        return hash(min_str)
+        # have to sort the keys first
+        hashable = self.__factors.items()
+        hashable.sort(key=lambda t: t[0])
+        hashable = (f'{k}:{v}' for k, v in hashable)
+        hashable = (',').join(hashable)
+        return hash(hashable)
 
     def __dict__(self):
         return self.__factors.copy()
