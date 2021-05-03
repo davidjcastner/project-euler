@@ -27,3 +27,20 @@ class TestFactorization:
         assert Factorization({2: 1}).divisor_count() == 2
         assert Factorization({2: 1, 3: 1}).divisor_count() == 4
         assert Factorization({2: 3, 3: 2, 5: 2}).divisor_count() == 36
+
+    def test_exponentiate() -> None:
+        # test cases are in the form of (a, b, c)
+        # where a is the input factorization
+        # b is the exponent
+        # c is the expected result
+        test_cases = [
+            ({}, 0, {}),
+            ({}, 1, {}),
+            ({}, 2, {}),
+            ({}, 3, {}),
+            ({2: 1}, 3, {2: 3}),
+            ({3: 5, 5: 2}, 0, {}),
+            ({2: 3, 7: 4}, 5, {2: 15, 7: 20})
+        ]
+        for a, b, c in test_cases:
+            assert Factorization(a).exponentiate(b) == Factorization(c)

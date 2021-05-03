@@ -27,6 +27,11 @@ class Factorization:
         hashable = (',').join(hashable)
         return hash(hashable)
 
+    def __eq__(self, other: Factorization):
+        if not isinstance(other, Factorization):
+            return False
+        return self.__factors == other.__factors
+
     def __dict__(self):
         return self.__factors.copy()
 
@@ -53,6 +58,9 @@ class Factorization:
 
     def exponentiate(self, exponent: int) -> int:
         '''returns the factorization of self**exponent'''
+        assert isinstance(exponent, int) and exponent >= 0
+        if exponent == 0:
+            return Factorization({})
         result = self.copy()
         for base in result.__factors:
             result[base] = result[base] * exponent
