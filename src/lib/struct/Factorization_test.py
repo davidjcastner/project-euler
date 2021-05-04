@@ -3,8 +3,8 @@ from src.lib.struct import Factorization
 
 class TestFactorization:
     def test_get_value(self) -> None:
-        assert Factorization({2: 2, 3: 1}) == 12
-        assert Factorization({2: 3, 5: 2}) == 200
+        assert Factorization({2: 2, 3: 1}).get_value() == 12
+        assert Factorization({2: 3, 5: 2}).get_value() == 200
 
     def test_mul(self) -> None:
         # test cases are in the form of (a, b, c)
@@ -22,13 +22,13 @@ class TestFactorization:
             expected = Factorization(c)
             assert result == expected
 
-    def test_divisor_count() -> None:
+    def test_divisor_count(self) -> None:
         assert Factorization({}).divisor_count() == 1
         assert Factorization({2: 1}).divisor_count() == 2
         assert Factorization({2: 1, 3: 1}).divisor_count() == 4
         assert Factorization({2: 3, 3: 2, 5: 2}).divisor_count() == 36
 
-    def test_exponentiate() -> None:
+    def test_exponentiate(self) -> None:
         # test cases are in the form of (a, b, c)
         # where a is the input factorization
         # b is the exponent

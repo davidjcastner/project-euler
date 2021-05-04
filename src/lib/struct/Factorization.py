@@ -52,7 +52,7 @@ class Factorization:
     def divisor_count(self) -> int:
         '''returns the number of divisors'''
         count = 1
-        for base, exp in self.__factors:
+        for base, exp in self.__factors.items():
             count *= exp + 1
         return count
 
@@ -63,5 +63,5 @@ class Factorization:
             return Factorization({})
         result = self.copy()
         for base in result.__factors:
-            result[base] = result[base] * exponent
+            result.__factors[base] = result.__factors[base] * exponent
         return result
