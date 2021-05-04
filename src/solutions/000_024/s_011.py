@@ -31,75 +31,19 @@
 # What is the greatest product of four adjacent numbers in the same direction
 # (up, down, left, right, or diagonally) in the 20×20 grid?
 
-from functools import reduce
-from typing import Callable, Generator, List, Tuple
-from project_euler.data.util import read_data
-
-
-def iterate_series(series: List[int], return_length: int, is_valid_start: Callable[[int], bool], next_index: Callable[[int], int]) -> Generator[List[int], None, None]:  # noqa E501
-    '''iterates through the series using all valid starting indexes, and returns the desired items'''
-    for series_index in range(len(series)):
-        if is_valid_start(series_index):
-            output_index = series_index
-            output = [series[output_index]]
-            for x in range(return_length - 1):
-                output_index = next_index(output_index)
-                output.append(series[output_index])
-            yield output
+import math
+from src.lib.struct import Direction
+from src.lib.utility import read_matrix
 
 
 def solve(series_length: int = 4, data_file: str = 'd_011.txt') -> str:
     '''Problem 11 - Largest product in a grid'''
-    data = read_data(data_file)
-    grid = [int(num) for num in data.split()]
-    grid_width, grid_height, factors_in_product = 20, 20, series_length
-
-    def is_valid_start_horizontal(index: int) -> bool:
-        '''checks if the index is a valid starting point'''
-        return index % grid_width <= grid_width - factors_in_product
-
-    def is_valid_start_vertical(index: int) -> bool:
-        '''checks if the index is a valid starting point'''
-        return index // grid_width <= grid_height - factors_in_product
-
-    def is_valid_start_leading_diagonal(index: int) -> bool:
-        '''checks if the index is a valid starting point'''
-        return is_valid_start_horizontal(index) and is_valid_start_vertical(index)
-
-    def is_valid_start_counter_diagonal(index: int) -> bool:
-        '''checks if the index is a valid starting point'''
-        return index % grid_width >= factors_in_product - 1 and is_valid_start_vertical(index)
-
-    def next_horizontal(index: int) -> int:
-        '''returns the next index in the direction'''
-        return index + 1
-
-    def next_vertical(index: int) -> int:
-        '''returns the next index in the direction'''
-        return index + grid_width
-
-    def next_leading_diagonal(index: int) -> int:
-        '''returns the next index in the direction'''
-        return index + grid_width + 1
-
-    def next_counter_diagonal(index: int) -> int:
-        '''returns the next index in the direction'''
-        return index + grid_width - 1
-
-    iterations: List[Tuple[Callable[[int], bool], Callable[[int], int]]] = [
-        (is_valid_start_horizontal, next_horizontal),
-        (is_valid_start_vertical, next_vertical),
-        (is_valid_start_leading_diagonal, next_leading_diagonal),
-        (is_valid_start_counter_diagonal, next_counter_diagonal)
-    ]
-
-    max_product = 0
-    multiply: Callable[[int, int], int] = lambda x, y: x * y
-    for iteration in iterations:
-        for factors in iterate_series(grid, factors_in_product, iteration[0], iteration[1]):
-            max_product = max(max_product, reduce(multiply, factors))
-
-    return str(max_product)
+    matrix = read_matrix(data_file)
+    sub_sequences = list(matrix.sub_sequences(Direction(0, 1), series_length))
+    sub_sequences.extend(matrix.sub_sequences(Direction(1, 1), series_length))
+    sub_sequences.extend(matrix.sub_sequences(Direction(1, 0), series_length))
+    sub_sequences.extend(matrix.sub_sequences(Direction(1, -1), series_length))
+    return str(max(math.prod(seq) for seq in sub_sequences))
 
 
 def test_simplified_version() -> None:

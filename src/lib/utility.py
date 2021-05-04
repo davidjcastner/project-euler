@@ -1,6 +1,7 @@
 import os
 from typing import Callable
 from typing import TypeVar
+from src.lib.struct import Matrix
 
 
 __data_directory = os.path.join('.', 'src', 'data')
@@ -46,3 +47,10 @@ def read_lines(filename: str) -> str:
     strips empty lines'''
     lines = read_raw_data(filename).splitlines()
     return list(filter(lambda s: len(s) > 0, lines))
+
+
+def read_matrix(filename: str, delimiter: str = ',') -> Matrix:
+    '''reads file and returns a matrix based on new lines and delimiter'''
+    lines = read_lines(filename)
+    data = [[int(n) for n in line.split(delimiter)] for line in lines]
+    return Matrix.from_data(data)
