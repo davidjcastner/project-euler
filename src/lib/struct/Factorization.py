@@ -61,7 +61,7 @@ class Factorization:
         assert isinstance(exponent, int) and exponent >= 0
         if exponent == 0:
             return Factorization({})
-        result = self.copy()
-        for base in result.__factors:
-            result.__factors[base] = result.__factors[base] * exponent
-        return result
+        new_factors = self.__factors.copy()
+        for base in new_factors:
+            new_factors[base] = new_factors[base] * exponent
+        return Factorization(new_factors)
