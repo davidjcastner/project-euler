@@ -32,13 +32,13 @@
 # (up, down, left, right, or diagonally) in the 20×20 grid?
 
 import math
-from src.lib.struct import Direction
+from src.lib.struct.Direction import Direction
 from src.lib.utility import read_matrix
 
 
 def solve(series_length: int = 4, data_file: str = 'd_011.txt') -> str:
     '''Problem 11 - Largest product in a grid'''
-    matrix = read_matrix(data_file)
+    matrix = read_matrix(data_file, delimiter=' ')
     sub_sequences = list(matrix.sub_sequences(Direction(0, 1), series_length))
     sub_sequences.extend(matrix.sub_sequences(Direction(1, 1), series_length))
     sub_sequences.extend(matrix.sub_sequences(Direction(1, 0), series_length))

@@ -11,7 +11,7 @@ from src.lib.factors import factorize
 
 def solve(n: int = 600851475143) -> str:
     '''Problem 3 - Largest prime factor'''
-    return str(max(factorize(n)))
+    return str(max(factorize(n).to_dict()))
 
 
 def test_simplified_version() -> None:

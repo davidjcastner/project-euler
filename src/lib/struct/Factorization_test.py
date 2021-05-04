@@ -1,4 +1,4 @@
-from src.lib.struct import Factorization
+from src.lib.struct.Factorization import Factorization
 
 
 class TestFactorization:

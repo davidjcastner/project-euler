@@ -21,7 +21,7 @@ class Factorization:
         # get the str representation of a dict
         # remove unnecessary whitespace and braces, leave delimiters : and ,
         # have to sort the keys first
-        hashable = self.__factors.items()
+        hashable = list(self.__factors.items())
         hashable.sort(key=lambda t: t[0])
         hashable = (f'{k}:{v}' for k, v in hashable)
         hashable = (',').join(hashable)

@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Generator
 from typing import Generic
 from typing import TypeVar
-from src.lib.struct import Direction
+from src.lib.struct.Direction import Direction
 
 
 T = TypeVar('T')

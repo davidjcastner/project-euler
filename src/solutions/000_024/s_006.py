@@ -18,7 +18,7 @@ from src.lib.calculate import sum_squares
 
 def solve(n: int = 100) -> str:
     '''Problem 6 - Sum square difference'''
-    return str(sum_range(1, n) ** 2 - sum_squares(n))
+    return str(sum_range(1, n + 1) ** 2 - sum_squares(n))
 
 
 def test_simplified_version() -> None:

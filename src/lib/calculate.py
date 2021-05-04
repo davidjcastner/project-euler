@@ -1,7 +1,7 @@
 '''shortcut formulas for fast calculations'''
 
 from functools import cache
-from src.lib.struct import Factorization
+from src.lib.struct.Factorization import Factorization
 from src.lib.factors import factorize
 from src.lib.utility import merge_dict
 

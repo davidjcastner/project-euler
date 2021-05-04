@@ -1,7 +1,7 @@
 import os
 from typing import Callable
 from typing import TypeVar
-from src.lib.struct import Matrix
+from src.lib.struct.Matrix import Matrix
 
 
 __data_directory = os.path.join('.', 'src', 'data')
@@ -54,3 +54,7 @@ def read_matrix(filename: str, delimiter: str = ',') -> Matrix:
     lines = read_lines(filename)
     data = [[int(n) for n in line.split(delimiter)] for line in lines]
     return Matrix.from_data(data)
+
+
+if __name__ == '__main__':
+    print(read_matrix('d_011.txt', delimiter=' '))

@@ -14,7 +14,7 @@ def solve(
     divisor_a: int = 3,
     divisor_b: int = 5,
     range_start: int = 0,
-    range_end: int = (1000 - 1)
+    range_end: int = 1000
 ) -> str:
     '''Problem 1 - Multiples of 3 and 5'''
     # can be done with math:
@@ -28,7 +28,7 @@ def solve(
 
 
 def test_simplified_version() -> None:
-    answer = solve(divisor_a=3, divisor_b=5, range_start=0, range_end=(10 - 1))
+    answer = solve(divisor_a=3, divisor_b=5, range_start=0, range_end=10)
     assert type(answer) == str
     assert answer == '23'
 

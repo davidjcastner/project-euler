@@ -1,7 +1,7 @@
 '''utility functions for operations related to factors/divisors'''
 
 from src.lib.primes import nth_prime
-from src.lib.struct import Factorization as Fact
+from src.lib.struct.Factorization import Factorization as Fact
 
 
 class _factorization:
