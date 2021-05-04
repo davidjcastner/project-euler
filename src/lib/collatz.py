@@ -19,21 +19,21 @@ def collatz_generator(n: int) -> Generator[int, None, None]:
         n = next_collatz(n)
 
 
-class __collatz:
+class _collatz:
     '''internal cache for finding collatz length'''
-    __known_lengths: dict[int, int] = {1: 0}
+    __known: dict[int, int] = {1: 0}
 
     @staticmethod
     def get_length(n: int) -> int:
         '''returns the length of collatz sequence of n'''
-        if n in __collatz.__known_lengths:
-            return __collatz.__known_lengths[n]
-        length = 1 + __collatz.get_length(next_collatz(n))
-        __collatz.__known_lengths[n] = length
+        if n in _collatz.__known:
+            return _collatz.__known[n]
+        length = 1 + _collatz.get_length(next_collatz(n))
+        _collatz.__known[n] = length
         return length
 
 
 def collatz_length(n: int) -> int:
     '''returns number of steps to get to 1'''
     assert isinstance(n, int) and n >= 1
-    return __collatz.get_length(n)
+    return _collatz.get_length(n)
