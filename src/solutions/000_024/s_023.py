@@ -25,7 +25,7 @@
 # of two abundant numbers.
 
 import itertools
-from project_euler.lib.factors import proper_divisor_sum
+from src.lib.factors import proper_divisor_sum
 
 
 def is_abundant(n: int) -> bool:
@@ -36,7 +36,8 @@ def is_abundant(n: int) -> bool:
 def solve(limit: int = 28123) -> str:
     '''Problem 23 - Non-abundant sums'''
     abundant_numbers = [n for n in range(1, limit + 1) if is_abundant(n)]
-    possible_sums = set(sum(t) for t in itertools.combinations_with_replacement(abundant_numbers, 2))
+    possible_sums = set(sum(t) for t in itertools.combinations_with_replacement(
+        abundant_numbers, 2))
     return str(sum(n for n in range(1, limit + 1) if n not in possible_sums))
 
 

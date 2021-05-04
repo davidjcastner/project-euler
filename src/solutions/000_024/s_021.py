@@ -13,12 +13,13 @@
 
 # Evaluate the sum of all the amicable numbers under 10000.
 
-from project_euler.lib.factors import proper_divisor_sum
+from src.lib.factors import proper_divisor_sum
 
 
 def is_amicable(n: int) -> bool:
     '''checks if n is amicable'''
-    return proper_divisor_sum(n) != n and proper_divisor_sum(proper_divisor_sum(n)) == n
+    return proper_divisor_sum(n) != n and proper_divisor_sum(
+        proper_divisor_sum(n)) == n
 
 
 def solve(limit: int = 10000) -> str:
