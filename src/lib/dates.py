@@ -13,32 +13,38 @@ class Date:
     6 - Sunday
     '''
 
-    def __init__(self, day: int, month: int, year: int, dayofweek: int = 0) -> None:
+    def __init__(
+        self,
+        day: int,
+        month: int,
+        year: int,
+        dayofweek: int = 0
+    ) -> None:
         self.day = day
         self.month = month
         self.year = year
         self.dayofweek = dayofweek
 
     def __str__(self) -> str:
-        return f'{self.year}-{str(self.month).zfill(2)}-{str(self.day).zfill(2)} [{self.dayofweek}]'
+        return f'{self.year}-{str(self.month).zfill(2)}-{str(self.day).zfill(2)} [{self.dayofweek}]'  # noqa E501
 
     def copy(self) -> Date:
         return Date(self.day, self.month, self.year, self.dayofweek)
 
     # def __eq__(self, other: Date) -> bool:
-    #     return self.year == other.year and self.month == other.month and self.day == other.day
+    #     return self.year == other.year and self.month == other.month and self.day == other.day # noqa E501
 
     # def __gt__(self, other: Date) -> bool:
-    #     return not (self.year < other.year or self.month < other.month or self.day <= other.day)
+    #     return not (self.year < other.year or self.month < other.month or self.day <= other.day) # noqa E501
 
     # def __gte__(self, other: Date) -> bool:
-    #     return not (self.year < other.year or self.month < other.month or self.day < other.day)
+    #     return not (self.year < other.year or self.month < other.month or self.day < other.day) # noqa E501
 
     # def __lt__(self, other: Date) -> bool:
-    #     return not (self.year > other.year or self.month > other.month or self.day >= other.day)
+    #     return not (self.year > other.year or self.month > other.month or self.day >= other.day) # noqa E501
 
     # def __lte__(self, other: Date) -> bool:
-    #     return not (self.year > other.year or self.month > other.month or self.day > other.day)
+    #     return not (self.year > other.year or self.month > other.month or self.day > other.day) # noqa E501
 
 
 def __is_leap_year(d: Date) -> bool:

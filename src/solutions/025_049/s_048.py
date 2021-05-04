@@ -22,7 +22,8 @@ def add_last_digits(iterator: list[int], d: int) -> int:
 
 def solve(n: int = 1000, d: int = 10) -> str:
     '''Problem 48 - Self powers'''
-    answer = add_last_digits((pow_last_digits(x, d) for x in range(1, n + 1)), d)
+    answer = add_last_digits((
+        pow_last_digits(x, d) for x in range(1, n + 1)), d)
     return str(answer)
 
 

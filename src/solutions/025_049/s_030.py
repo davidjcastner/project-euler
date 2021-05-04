@@ -12,8 +12,10 @@
 # Find the sum of all the numbers that can be written as the sum of fifth
 # powers of their digits.
 
+from typing import Generator
 
-def iter_digits(n: int, base: int = 10):
+
+def iter_digits(n: int, base: int = 10) -> Generator[int, None, None]:
     while n > 0:
         yield n % base
         n = n // base
