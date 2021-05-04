@@ -18,17 +18,8 @@
 # containing an 80 by 80 matrix.
 
 from typing import Callable
-from project_euler.lib.struct.Matrix import Matrix
-from project_euler.data.util import read_data
-
-
-def get_matrix_from_data(data_file: str) -> Matrix:
-    # data is csv strings
-    data = read_data(data_file)
-    data = data.splitlines()
-    data = [row.split(',') for row in data]
-    data = [[int(val) for val in row] for row in data]
-    return Matrix.from_data(data)
+from src.lib.struct.Matrix import Matrix
+from src.lib.utility import read_matrix
 
 
 def find_min_path(
@@ -41,7 +32,7 @@ def find_min_path(
 
 def solve(data_file: str = 'd_082.txt') -> str:
     '''Problem 82 - Path sum: three ways'''
-    matrix = get_matrix_from_data(data_file)
+    matrix = read_matrix(data_file)
 
     def is_end_location(row: int, col: int) -> bool:
         '''returns true if the location is on the right of the matrix'''

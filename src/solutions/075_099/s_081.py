@@ -16,43 +16,36 @@
 # right and down in matrix.txt (right click and "Save Link/Target As..."), a
 # 31K text file containing an 80 by 80 matrix.
 
-from project_euler.lib.struct.Matrix import Matrix
-from project_euler.data.util import read_data
-
-
-def get_matrix_from_data(data_file: str) -> Matrix:
-    # data is csv strings
-    data = read_data(data_file)
-    data = data.splitlines()
-    data = [row.split(',') for row in data]
-    data = [[int(val) for val in row] for row in data]
-    return Matrix.from_data(data)
+from src.lib.struct import Matrix
+from src.lib.utility import read_matrix
 
 
 def find_min_path(m: Matrix) -> int:
     '''finds the min path in the matrix from top left to bottom right,
     only uses down and right directions for pathing'''
     min_values = m.blank_copy()
-    for row, col in m.each_row_col(reverse=True):
-        node_value = m.get(row=row, col=col)
+    for row, col in m.iter_rows_cols(reverse=True):
+        node_value = m[m.get_index(row, col)]
         min_path = 0
         if row + 1 == m.rows and col + 1 == m.cols:
             min_path = node_value
         elif row + 1 == m.rows:
-            min_path = node_value + min_values.get(row=row, col=col + 1)
+            min_path = node_value + min_values[m.get_index(
+                row=row, col=col + 1)]
         elif col + 1 == m.cols:
-            min_path = node_value + min_values.get(row=row + 1, col=col)
+            min_path = node_value + min_values[m.get_index(
+                row=row + 1, col=col)]
         else:
             min_path = node_value + min(
-                min_values.get(row=row, col=col + 1),
-                min_values.get(row=row + 1, col=col))
-        min_values.set(row=row, col=col, value=min_path)
+                min_values[m.get_index(row=row, col=col + 1)],
+                min_values[m.get_index(row=row + 1, col=col)])
+        min_values[m.get_index(row, col)] = min_path
     return min_values.get(row=0, col=0)
 
 
 def solve(data_file: str = 'd_081.txt') -> str:
     '''Problem 81 - Path sum: two ways'''
-    matrix = get_matrix_from_data(data_file)
+    matrix = read_matrix(data_file)
     result = find_min_path(matrix)
     return str(result)
 
