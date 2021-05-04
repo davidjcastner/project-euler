@@ -3,7 +3,7 @@
 from typing import Generator
 
 
-class __prime_sieve:
+class _prime_sieve:
     '''internal sieve for prime functions'''
     # functions automatically use the sieve, and it grows automatically
 
@@ -14,10 +14,10 @@ class __prime_sieve:
     def __extend() -> None:
         '''doubles the size of the sieve'''
         # double size of sieve's boolean values
-        pre_len = len(__prime_sieve.__sieve)
-        __prime_sieve.__sieve += [True] * pre_len
+        pre_len = len(_prime_sieve.__sieve)
+        _prime_sieve.__sieve += [True] * pre_len
         # set values of known composites to false
-        for prime in __prime_sieve.__prime_list:
+        for prime in _prime_sieve.__prime_list:
             # calculate correct starting position based of starting index of
             # sieve extension and the current prime
             if pre_len % prime == 0:
@@ -25,30 +25,30 @@ class __prime_sieve:
             else:
                 start = pre_len + prime - (pre_len % prime)
             # flips all multiples of current prime to False
-            for multiple in range(start, len(__prime_sieve.__sieve), prime):
-                __prime_sieve.__sieve[multiple] = False
+            for multiple in range(start, len(_prime_sieve.__sieve), prime):
+                _prime_sieve.__sieve[multiple] = False
 
     @staticmethod
     def __calculate_next_prime() -> None:
         '''finds the next prime after the last prime in prime_list,
         and adds it to prime_list'''
         # start at last known prime
-        possible = __prime_sieve.__prime_list[-1]
+        possible = _prime_sieve.__prime_list[-1]
         # continue incrementing possible prime by one until confirmed that
         # it is prime
         while True:
             possible += 1
             # extend sieve is possible prime is larger than sieve capacity
-            if possible >= len(__prime_sieve.__sieve):
-                __prime_sieve.__extend()
+            if possible >= len(_prime_sieve.__sieve):
+                _prime_sieve.__extend()
             # check sieve boolean map to see if it is prime
-            if __prime_sieve.__sieve[possible]:
+            if _prime_sieve.__sieve[possible]:
                 # prime found, add to known prime list and until boolean sieve
-                __prime_sieve.__prime_list.append(possible)
+                _prime_sieve.__prime_list.append(possible)
                 start = possible * possible
-                end = len(__prime_sieve.__sieve)
+                end = len(_prime_sieve.__sieve)
                 for multiple in range(start, end, possible):
-                    __prime_sieve.__sieve[multiple] = False
+                    _prime_sieve.__sieve[multiple] = False
                 break
 
     @staticmethod
@@ -56,30 +56,30 @@ class __prime_sieve:
         '''uses the sieve to check if n is prime'''
         # continue to calculate primes until sieve's last known prime is
         # greater than or equal to n, then check boolean sieve of n
-        while n > __prime_sieve.__prime_list[-1]:
-            __prime_sieve.__calculate_next_prime()
-        return __prime_sieve.__sieve[n]
+        while n > _prime_sieve.__prime_list[-1]:
+            _prime_sieve.__calculate_next_prime()
+        return _prime_sieve.__sieve[n]
 
     @staticmethod
     def nth_prime(n: int) -> int:
         '''uses the sieve's prime_list to return the nth prime'''
         # continue to calculate primes until sieve's prime list's length is
         # greater than or equal to n, then check prime list of n
-        while n > len(__prime_sieve.__prime_list):
-            __prime_sieve.__calculate_next_prime()
-        return __prime_sieve.__prime_list[n - 1]
+        while n > len(_prime_sieve.__prime_list):
+            _prime_sieve.__calculate_next_prime()
+        return _prime_sieve.__prime_list[n - 1]
 
     @staticmethod
     def last_known_prime() -> int:
         '''exposes last known prime, useful for optimizations'''
-        return __prime_sieve.__prime_list[-1]
+        return _prime_sieve.__prime_list[-1]
 
 
 def prime_generator() -> Generator[int, None, None]:
     '''iterates through all primes starting at 2'''
     n = 1
     while True:
-        yield __prime_sieve.nth_prime(n)
+        yield _prime_sieve.nth_prime(n)
         n += 1
 
 
@@ -89,8 +89,8 @@ def is_prime(n: int) -> bool:
     if n < 2:
         return False
     # if n is already calculated, get is_prime from sieve
-    if n <= __prime_sieve.last_known_prime():
-        return __prime_sieve.is_prime(n)
+    if n <= _prime_sieve.last_known_prime():
+        return _prime_sieve.is_prime(n)
     # otherwise, faster to check divisibility up to the sqrt of n
     sqrt = int(n ** 0.5)
     for prime in prime_generator():
@@ -104,4 +104,4 @@ def is_prime(n: int) -> bool:
 def nth_prime(n: int) -> int:
     '''returns the nth_prime'''
     assert isinstance(n, int) and n > 0
-    return __prime_sieve.nth_prime(n)
+    return _prime_sieve.nth_prime(n)
