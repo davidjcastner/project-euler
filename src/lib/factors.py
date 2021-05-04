@@ -51,7 +51,7 @@ def factorize(n: int) -> Fact:
     return _factorization.get_prime_factors(n)
 
 
-class __divisor_sieve:
+class _divisor_sieve:
     '''internal sieve for finding proper divisors'''
 
     __sieve: list[set[int]] = [set(), set([1]), set([1]), set([1])]
@@ -60,11 +60,11 @@ class __divisor_sieve:
     def __extend() -> None:
         '''doubles the size of the sieve'''
         # initialize sets for divisors for extended section
-        pre_len = len(__divisor_sieve.__sieve)
+        pre_len = len(_divisor_sieve.__sieve)
         for i in range(pre_len):
-            __divisor_sieve.__sieve.append(set([1]))
+            _divisor_sieve.__sieve.append(set([1]))
         # check divisors up to sqrt of max len
-        sqrt = int(len(__divisor_sieve.__sieve)**0.5)
+        sqrt = int(len(_divisor_sieve.__sieve)**0.5)
         for divisor in range(2, sqrt + 1):
             # find the next multiple of divisor that is >= section start
             if pre_len % divisor == 0:
@@ -72,38 +72,38 @@ class __divisor_sieve:
             else:
                 start = pre_len + divisor - (pre_len % divisor)
             # add divisor to all multiples
-            for multiple in range(start, len(__divisor_sieve.__sieve), divisor):
-                __divisor_sieve.__sieve[multiple].add(divisor)
-                __divisor_sieve.__sieve[multiple].add(multiple // divisor)
+            for multiple in range(start, len(_divisor_sieve.__sieve), divisor):
+                _divisor_sieve.__sieve[multiple].add(divisor)
+                _divisor_sieve.__sieve[multiple].add(multiple // divisor)
 
     @staticmethod
     def get_divisors(n: int) -> set[int]:
         '''returns the set of proper divisors of n,
         growing the sieve as necessary'''
-        while n >= len(__divisor_sieve.__sieve):
-            __divisor_sieve.__extend()
-        return __divisor_sieve.__sieve[n].copy()
+        while n >= len(_divisor_sieve.__sieve):
+            _divisor_sieve.__extend()
+        return _divisor_sieve.__sieve[n].copy()
 
 
 def proper_divisors(n: int) -> set[int]:
     '''returns the set of proper divisors of a positive integer'''
     assert isinstance(n, int) and n > 0
-    return __divisor_sieve.get_divisors(n)
+    return _divisor_sieve.get_divisors(n)
 
 
-class __divisor_sums:
+class _divisor_sums:
     '''internal cache of divisors sum'''
     __known: dict[int, int] = {0: 0, 1: 1}
 
     @staticmethod
     def get_sum(n: int) -> int:
         '''returns the sum of proper divisors of n'''
-        if n not in __divisor_sums.__known:
-            __divisor_sums.__known[n] = sum(proper_divisors(n))
-        return __divisor_sums.__known[n]
+        if n not in _divisor_sums.__known:
+            _divisor_sums.__known[n] = sum(proper_divisors(n))
+        return _divisor_sums.__known[n]
 
 
 def proper_divisor_sum(n: int) -> int:
     '''returns the sum of all proper divisors of a positive integer'''
     assert isinstance(n, int) and n > 0
-    return __divisor_sums.get_sum(n)
+    return _divisor_sums.get_sum(n)
