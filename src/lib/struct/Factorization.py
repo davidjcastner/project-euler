@@ -32,7 +32,7 @@ class Factorization:
             return False
         return self.__factors == other.__factors
 
-    def __dict__(self):
+    def to_dict(self) -> dict[int, int]:
         return self.__factors.copy()
 
     def copy(self) -> Factorization:

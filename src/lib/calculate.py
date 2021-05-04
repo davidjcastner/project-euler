@@ -35,5 +35,6 @@ def least_common_multiple(*args: tuple[int]) -> int:
     '''returns the least common multiple for all positive integers given'''
     assert all(isinstance(n, int) and n > 0 for n in args)
     # lcm can be found by combining factorizations and taking max of overlap
-    fact = Factorization(merge_dict(max, *(dict(factorize(n)) for n in args)))
+    factorizations = (factorize(n).to_dict() for n in args)
+    fact = Factorization(merge_dict(max, *factorizations))
     return fact.get_value()
