@@ -4,22 +4,22 @@ from src.lib.factors import proper_divisor_sum
 
 
 def test_factorize() -> None:
-    assert dict(factorize(1)) == {}
-    assert dict(factorize(2)) == {2: 1}
-    assert dict(factorize(3)) == {3: 1}
-    assert dict(factorize(4)) == {2: 2}
-    assert dict(factorize(5)) == {5: 1}
-    assert dict(factorize(6)) == {2: 1, 3: 1}
-    assert dict(factorize(7)) == {7: 1}
-    assert dict(factorize(8)) == {2: 3}
-    assert dict(factorize(9)) == {3: 2}
-    assert dict(factorize(10)) == {2: 1, 5: 1}
-    assert dict(factorize(11)) == {11: 1}
-    assert dict(factorize(12)) == {2: 2, 3: 1}
-    assert dict(factorize(3125)) == {5: 5}
-    assert dict(factorize(13195)) == {5: 1, 7: 1, 13: 1, 29: 1}
-    assert dict(factorize(39601)) == {199: 2}
-    assert dict(factorize(1449175)) == {5: 2, 7: 3, 13: 2}
+    assert factorize(1).to_dict() == {}
+    assert factorize(2).to_dict() == {2: 1}
+    assert factorize(3).to_dict() == {3: 1}
+    assert factorize(4).to_dict() == {2: 2}
+    assert factorize(5).to_dict() == {5: 1}
+    assert factorize(6).to_dict() == {2: 1, 3: 1}
+    assert factorize(7).to_dict() == {7: 1}
+    assert factorize(8).to_dict() == {2: 3}
+    assert factorize(9).to_dict() == {3: 2}
+    assert factorize(10).to_dict() == {2: 1, 5: 1}
+    assert factorize(11).to_dict() == {11: 1}
+    assert factorize(12).to_dict() == {2: 2, 3: 1}
+    assert factorize(3125).to_dict() == {5: 5}
+    assert factorize(13195).to_dict() == {5: 1, 7: 1, 13: 1, 29: 1}
+    assert factorize(39601).to_dict() == {199: 2}
+    assert factorize(1449175).to_dict() == {5: 2, 7: 3, 13: 2}
 
 
 def test_proper_divisors() -> None:
@@ -48,4 +48,4 @@ def test_proper_divisor_sum() -> None:
     assert proper_divisor_sum(9) == sum([1, 3])
     assert proper_divisor_sum(12) == sum([1, 2, 3, 4, 6])
     assert proper_divisor_sum(30) == sum([1, 2, 3, 5, 6, 10, 15])
-    assert proper_divisor_sum(220) == sum(284)
+    assert proper_divisor_sum(220) == 284
