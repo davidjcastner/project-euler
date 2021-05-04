@@ -23,7 +23,10 @@ def test_sum_range() -> None:
         assert sum_range(*test_case) == sum(range(*test_case))
         for divisor in range(2, 6):
             args = *test_case, divisor
-            assert sum_range(*args) == sum(range(*args))
+            real_start = args[0]
+            while real_start % divisor != 0:
+                real_start += 1
+            assert sum_range(*args) == sum(range(real_start, *args[1:]))
 
 
 def test_sum_squares() -> None:

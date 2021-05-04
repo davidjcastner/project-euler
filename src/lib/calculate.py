@@ -14,7 +14,7 @@ def sum_range(beg: int, end: int, divisor: int = 1) -> int:
     assert isinstance(divisor, int)
     assert divisor > 0
     calc_beg = (beg + divisor - 1) // divisor
-    calc_end = end // divisor
+    calc_end = (end - 1) // divisor
     return ((calc_beg + calc_end) * (calc_end - calc_beg + 1) // 2) * divisor
 
 
