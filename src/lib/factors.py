@@ -4,7 +4,7 @@ from src.lib.primes import nth_prime
 from src.lib.struct import Factorization as Fact
 
 
-class __factorization:
+class _factorization:
     '''internal cache of factorizations,
 
     ensures minimal calculations of factorizations'''
@@ -15,40 +15,40 @@ class __factorization:
     def get_prime_factors(n: int, last_prime: int = 1) -> Fact:
         '''recursively calculates factorizations'''
         # check if factorization of n was already calculated
-        if n in __factorization.__known:
-            return __factorization.__known[n].copy()
+        if n in _factorization.__known:
+            return _factorization.__known[n].copy()
 
         # get the next prime to test
         current_div = nth_prime(last_prime)
 
         # add the prime to factorization if not already in
-        if current_div not in __factorization.__known:
-            __factorization.__known[current_div] = Fact({current_div: 1})
+        if current_div not in _factorization.__known:
+            _factorization.__known[current_div] = Fact({current_div: 1})
 
         # can stop and conclude that n is prime if current_div ** 2 > n
         if (current_div * current_div) > n:
             fact = Fact({n: 1})
-            __factorization.__known[n] = fact
+            _factorization.__known[n] = fact
             return fact
 
         # check if the prime divides n
         # if so, combine prime with factorization of remainder
         if n % current_div == 0:
             quotient = n // current_div
-            q_fact = __factorization.get_prime_factors(quotient, last_prime)
+            q_fact = _factorization.get_prime_factors(quotient, last_prime)
             fact = q_fact * Fact({current_div: 1})
-            __factorization.__known[n] = fact
+            _factorization.__known[n] = fact
             return fact
 
         # otherwise, try next prime
         else:
-            return __factorization.get_prime_factors(n, last_prime + 1)
+            return _factorization.get_prime_factors(n, last_prime + 1)
 
 
 def factorize(n: int) -> Fact:
     '''returns the unique prime factorization of a positive integer'''
     assert isinstance(n, int) and n > 0
-    return __factorization.get_prime_factors(n)
+    return _factorization.get_prime_factors(n)
 
 
 class __divisor_sieve:
