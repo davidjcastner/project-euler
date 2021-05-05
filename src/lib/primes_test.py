@@ -1,6 +1,7 @@
 from src.lib.primes import is_prime
 from src.lib.primes import nth_prime
 from src.lib.primes import prime_generator
+from src.lib.primes import primes_less_than
 
 
 def test_prime_generator() -> None:
@@ -51,3 +52,14 @@ def test_nth_prime() -> None:
     assert nth_prime(9) == 23
     assert nth_prime(10) == 29
     assert nth_prime(1000) == 7919
+
+
+def test_primes_less_than() -> None:
+    assert primes_less_than(0) == []
+    assert primes_less_than(1) == []
+    assert primes_less_than(2) == []
+    assert primes_less_than(3) == [2]
+    assert primes_less_than(4) == [2, 3]
+    assert primes_less_than(10) == [2, 3, 5, 7]
+    assert primes_less_than(19) == [2, 3, 5, 7, 11, 13, 17]
+    assert primes_less_than(20) == [2, 3, 5, 7, 11, 13, 17, 19]

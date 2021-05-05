@@ -1,5 +1,6 @@
 '''utility generators and functions related to primes'''
 
+import bisect
 from typing import Generator
 
 
@@ -74,6 +75,14 @@ class _prime_sieve:
         '''exposes last known prime, useful for optimizations'''
         return _prime_sieve.__prime_list[-1]
 
+    @staticmethod
+    def primes_less_than(n: int) -> list[int]:
+        '''returns a list of prime less than n'''
+        while n > _prime_sieve.__prime_list[-1]:
+            _prime_sieve.__calculate_next_prime()
+        index = bisect.bisect_left(_prime_sieve.__prime_list, n)
+        return _prime_sieve.__prime_list[:index]
+
 
 def prime_generator() -> Generator[int, None, None]:
     '''iterates through all primes starting at 2'''
@@ -105,3 +114,11 @@ def nth_prime(n: int) -> int:
     '''returns the nth_prime'''
     assert isinstance(n, int) and n > 0
     return _prime_sieve.nth_prime(n)
+
+
+def primes_less_than(n: int) -> list[int]:
+    '''returns a list of primes less than n'''
+    assert isinstance(n, int)
+    if n < 2:
+        return []
+    return _prime_sieve.primes_less_than(n)
