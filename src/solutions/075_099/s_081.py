@@ -16,7 +16,7 @@
 # right and down in matrix.txt (right click and "Save Link/Target As..."), a
 # 31K text file containing an 80 by 80 matrix.
 
-from src.lib.struct import Matrix
+from src.lib.struct.Matrix import Matrix
 from src.lib.utility import read_matrix
 
 
@@ -40,7 +40,7 @@ def find_min_path(m: Matrix) -> int:
                 min_values[m.get_index(row=row, col=col + 1)],
                 min_values[m.get_index(row=row + 1, col=col)])
         min_values[m.get_index(row, col)] = min_path
-    return min_values.get(row=0, col=0)
+    return min_values[0]
 
 
 def solve(data_file: str = 'd_081.txt') -> str:
