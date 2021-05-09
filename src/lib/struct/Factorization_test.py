@@ -44,3 +44,13 @@ class TestFactorization:
         ]
         for a, b, c in test_cases:
             assert Factorization(a).exponentiate(b) == Factorization(c)
+
+    def test_distinct_factors(self) -> None:
+        assert Factorization({}).distinct_factors() == 0
+        assert Factorization({2: 1}).distinct_factors() == 1
+        assert Factorization({2: 2}).distinct_factors() == 1
+        assert Factorization({2: 3}).distinct_factors() == 1
+        assert Factorization({3: 1}).distinct_factors() == 1
+        assert Factorization({3: 2}).distinct_factors() == 1
+        assert Factorization({3: 2, 5: 3, 7: 5}).distinct_factors() == 3
+        assert Factorization({2: 7, 3: 7, 5: 5, 7: 2}).distinct_factors() == 4

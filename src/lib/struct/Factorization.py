@@ -65,3 +65,7 @@ class Factorization:
         for base in new_factors:
             new_factors[base] = new_factors[base] * exponent
         return Factorization(new_factors)
+
+    def distinct_factors(self) -> int:
+        '''returns the number of unique factors in the factorization'''
+        return len(self.to_dict())
