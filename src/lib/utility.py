@@ -56,5 +56,14 @@ def read_matrix(filename: str, delimiter: str = ',') -> Matrix:
     return Matrix.from_data(data)
 
 
+def read_delimited_data(filename: str, delimiter: str = ',') -> list[str]:
+    '''reads a file containing strings that use a single delimited,
+    ignores newlines'''
+    data = read_raw_data(filename)
+    data = [value.strip() for value in data.split(delimiter)]
+    data = [value for value in data if len(value) > 0]
+    return data
+
+
 if __name__ == '__main__':
     print(read_matrix('d_011.txt', delimiter=' '))
