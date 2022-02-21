@@ -13,3 +13,9 @@ All input data is in ./src/data
 All solutions should have a solve functions with default arguments set and output the answer as a string
 
 All solutions should print out the answer if run as main script
+
+## Making a new solution file
+
+```cmd
+py src\make_solution_file.py problem_number
+```
